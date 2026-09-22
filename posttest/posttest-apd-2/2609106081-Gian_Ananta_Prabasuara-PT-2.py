@@ -25,7 +25,6 @@ print("Komponen 3: Rp", komponen_3)
 print("Komponen 4: Rp", komponen_4)
 print("Komponen 5: Rp", komponen_5)
 print("Komponen 6: Rp", komponen_6)
-
 print("Total Biaya: Rp", total_biaya)
 print("Rata-rata: Rp", rata_rata)
 print("NIM: ", nim)
