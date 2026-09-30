@@ -1,0 +1,87 @@
+nama = "gian"
+nim = 81
+
+Nama = str(input("Masukkan nama anda : "))
+Nim = int(input("Masukkan nim anda : "))
+
+if Nama == nama and Nim == nim:
+    print("Login berhasil!")
+
+    print("Silahkan isi Data anda: ")
+    id = int(input("Masukkan ID anda : "))
+    print('''
+    Pilih Jenis Game anda:
+    1. Gensin Impact
+    2. Minecraft
+    3. Mobile Legends
+    ''')
+    game = ["Gensin Impact", "Minecraft", "Mobile Legend"]
+    nama_game = str(input("Pilih jenis game anda: "))
+    if nama_game not in game:
+        print("Game tidak Tersedia")
+    print('''
+    Pilih Kategori Top Up anda:
+    1. Kecil    = Rp. 15.000
+    2. Menengah = Rp. 50.000
+    3. Besar    = Rp. 150.000
+    ''')
+    kategori = input("Pilih kategori pilihan anda: ")
+    if kategori == "Kecil":
+        bayar = 15000
+        print('''
+        Pilih Metode Pembayaran anda:
+        1. Pulsa
+        2. E-Wallet
+        ''')
+        biaya_admin = input("Pilih metode pembayaran: ")
+        if biaya_admin == "Pulsa":
+            biaya = 2500
+        elif biaya_admin == "E-Wallet":
+            biaya = 500
+        else:
+            print("Metode pembayaran tidak ada!")
+            exit()
+    elif kategori == "Menengah":
+        bayar = 50000
+        print('''
+        Pilih Metode Pembayaran anda:
+        1. Pulsa
+        2. E-Wallet
+        ''')
+        biaya_admin = input("Pilih metode pembayaran: ")
+        if biaya_admin == "Pulsa":
+            biaya = 2500
+        elif biaya_admin == "E-Wallet":
+            biaya = 500
+        else:
+            print("Metode pembayaran tidak ada!")
+            exit()
+    elif kategori == "Besar":
+        bayar = 150000
+        print('''
+        Pilih Metode Pembayaran anda:
+        1. Pulsa
+        2. E-Wallet
+        ''')
+        biaya_admin = input("Pilih metode pembayaran: ")
+        if biaya_admin == "Pulsa":
+            biaya = 2500
+        elif biaya_admin == "E-Wallet":
+            biaya = 500
+        else:
+            print("Metode pembayaran tidak ada!")
+    else:
+        print("Jenis Kategori Tidak Ada!")
+        exit()
+else:
+    print("ERROR!")
+nominal = int(input("Masukkan nominal uang anda : "))
+print("="*20)
+total_bayar = bayar + biaya
+kembalian = nominal - total_bayar
+if nominal < total_bayar:
+    print("Transaksi gagal, saldo anda tidak mencukupi!")
+else:
+    print(f"Total yang anda bayar adalah : Rp. {total_bayar}")
+    print(f"Dan Kembalian Anda Adalah : Rp. {kembalian}")
+print("="*20)
