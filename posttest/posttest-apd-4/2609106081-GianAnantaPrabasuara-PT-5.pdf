@@ -1,0 +1,187 @@
+data_konser = [
+    [1, "LANY a beautiful blur: the world tour", "LANY", "20-12-2026", 1500000, 100],
+    [2, "LANY Live in Jakarta", "LANY", "25-12-2026", 1250000, 50]
+]
+
+menu = (
+    "Tambah Data Konser",
+    "Tampilkan Data Konser",
+    "Ubah Data Konser",
+    "Hapus Data Konser",
+    "Beli Tiket",
+    "Keluar"
+)
+
+
+def tampilkan_konser():
+    print("\n=== DAFTAR KONSER ===")
+
+    if len(data_konser) == 0:
+        print("Belum ada data konser.")
+        return
+
+    for konser in data_konser:
+        print("-" * 35)
+        print("ID       :", konser[0])
+        print("Nama     :", konser[1])
+        print("Artis    :", konser[2])
+        print("Tanggal  :", konser[3])
+        print("Harga    : Rp", format(konser[4], ","))
+        print("Stok     :", konser[5])
+
+
+def tambah_konser():
+    print("\n=== TAMBAH DATA KONSER ===")
+
+    try:
+        id_konser = max([k[0] for k in data_konser], default=0) + 1
+        nama = input("Nama konser: ")
+        artis = input("Nama artis: ")
+        tanggal = input("Tanggal konser: ")
+        harga = int(input("Harga tiket: "))
+        stok = int(input("Stok tiket: "))
+
+        if not nama or not artis or not tanggal:
+            print("Data tidak boleh kosong.")
+            return
+
+        if harga <= 0 or stok < 0:
+            print("Harga harus lebih dari 0 dan stok tidak boleh negatif.")
+            return
+
+        data_konser.append(
+            [id_konser, nama, artis, tanggal, harga, stok]
+        )
+
+        print("Data konser berhasil ditambahkan.")
+
+    except ValueError:
+        print("Harga dan stok harus berupa angka.")
+
+
+def ubah_konser():
+    tampilkan_konser()
+
+    if len(data_konser) == 0:
+        return
+
+    try:
+        id_konser = int(input("\nMasukkan ID konser yang ingin diubah: "))
+
+        for konser in data_konser:
+            if konser[0] == id_konser:
+                print("Kosongkan input jika data tidak ingin diubah.")
+
+                nama = input("Nama konser baru: ")
+                artis = input("Nama artis baru: ")
+                tanggal = input("Tanggal baru: ")
+                harga_baru = input("Harga baru: ")
+                stok_baru = input("Stok baru: ")
+
+                harga = int(harga_baru) if harga_baru else konser[4]
+                stok = int(stok_baru) if stok_baru else konser[5]
+
+                if harga <= 0 or stok < 0:
+                    print("Harga harus lebih dari 0 dan stok tidak boleh negatif.")
+                    return
+
+                konser[1] = nama if nama else konser[1]
+                konser[2] = artis if artis else konser[2]
+                konser[3] = tanggal if tanggal else konser[3]
+                konser[4] = harga
+                konser[5] = stok
+
+                print("Data konser berhasil diubah.")
+                return
+
+        print("ID konser tidak ditemukan.")
+
+    except ValueError:
+        print("ID, harga, dan stok harus berupa angka yang valid.")
+
+
+def hapus_konser():
+    tampilkan_konser()
+
+    if len(data_konser) == 0:
+        return
+
+    try:
+        id_konser = int(input("\nMasukkan ID konser yang ingin dihapus: "))
+
+        for i in range(len(data_konser)):
+            if data_konser[i][0] == id_konser:
+                data_konser.pop(i)
+                print("Data konser berhasil dihapus.")
+                return
+
+        print("ID konser tidak ditemukan.")
+
+    except ValueError:
+        print("ID harus berupa angka.")
+
+
+def beli_tiket():
+    tampilkan_konser()
+
+    if len(data_konser) == 0:
+        return
+
+    try:
+        id_konser = int(input("\nMasukkan ID konser yang dipilih: "))
+        jumlah = int(input("Jumlah tiket yang dibeli: "))
+
+        if jumlah <= 0:
+            print("Jumlah tiket harus lebih dari 0.")
+            return
+
+        for konser in data_konser:
+            if konser[0] == id_konser:
+                if konser[5] >= jumlah:
+                    total = konser[4] * jumlah
+                    konser[5] -= jumlah
+
+                    print("\n=== DETAIL PEMBELIAN ===")
+                    print("Nama konser :", konser[1])
+                    print("Artis       :", konser[2])
+                    print("Jumlah tiket:", jumlah)
+                    print("Total harga : Rp", format(total, ","))
+                    print("Sisa stok   :", konser[5])
+                    print("Pembelian berhasil.")
+                else:
+                    print("Stok tiket tidak mencukupi.")
+                return
+
+        print("ID konser tidak ditemukan.")
+
+    except ValueError:
+        print("ID dan jumlah tiket harus berupa angka.")
+
+
+def menu_utama():
+    while True:
+        print("\n===== SISTEM PENJUALAN TIKET KONSER =====")
+
+        for i in range(len(menu)):
+            print(f"{i + 1}. {menu[i]}")
+
+        pilihan = input("Pilih menu (1-6): ")
+
+        if pilihan == "1":
+            tambah_konser()
+        elif pilihan == "2":
+            tampilkan_konser()
+        elif pilihan == "3":
+            ubah_konser()
+        elif pilihan == "4":
+            hapus_konser()
+        elif pilihan == "5":
+            beli_tiket()
+        elif pilihan == "6":
+            print("Terima kasih telah menggunakan program.")
+            break
+        else:
+            print("Pilihan tidak valid.")
+
+
+menu_utama()

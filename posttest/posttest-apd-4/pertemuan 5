@@ -1,0 +1,11 @@
+lemari = ["Baju", "Celana ", 69, 7,2, True, 70, 222, 240]
+print ("Sebelum diubah")
+print (lemari)
+lemari.insert(1, "KTP")
+lemari [0,2] ("Sesudah di Insert")
+print (lemari)
+for item in lemari:
+    if type(item) == int : 
+        lemari.remove(item) 
+
+angka = (1, 2, 3)
