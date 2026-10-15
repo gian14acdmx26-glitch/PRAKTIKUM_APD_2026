@@ -106,7 +106,6 @@ while True:
                                         print("Harga dan stok harus berupa angka.")
 
                                     ditemukan = True
-
                             if not ditemukan:
                                 print("ID konser tidak ditemukan.")
                         else:
