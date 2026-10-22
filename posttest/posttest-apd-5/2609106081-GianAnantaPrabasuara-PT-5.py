@@ -1,14 +1,14 @@
-data_konser = [
+data_konser = (
     (1, "LANY - Jakarta", "Jakarta", 850000, 100),
     (2, "LANY - Surabaya", "Surabaya", 750000, 80),
     (3, "LANY - Bali", "Bali", 900000, 60)
-]
+)
 
-data_user = [
-    ("admin", "admin123", "admin")
-]
+data_user = (
+       ("admin", "admin123", "admin")
+)
 
-data_transaksi = []
+data_transaksi = ()
 
 while True:
     print("\n=== SISTEM PENJUALAN TIKET KONSER LANY ===")
